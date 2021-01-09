@@ -1,18 +1,18 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDriver", "TestDriver\TestDriver.csproj", "{E3B1DC7D-EE61-438F-8D3F-C6F9CE98AF32}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WS2300", "WS2300\WS2300.csproj", "{18519D47-09C4-4C5D-AA77-EF8173741AA1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterTest", "TwitterTest\TwitterTest.csproj", "{FEBCF870-6F7C-4B4F-BE20-B10F325F5EB3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterBot", "TwitterBot\TwitterBot.csproj", "{3F0EB8F1-CC77-4DA3-80B4-ECCE6B403156}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7889EEAC-1534-4DFF-9507-88790317A2AF}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDriver", "TestDriver\TestDriver.csproj", "{8059FAD1-9E8F-4A3B-8900-DBE4BF4ECC9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WS2300", "WS2300\WS2300.csproj", "{212A71B4-5D93-4D07-A551-4E0F5A6C80D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterTest", "TwitterTest\TwitterTest.csproj", "{9911BC5F-328F-498F-8764-3E91419482D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterBot", "TwitterBot\TwitterBot.csproj", "{D82F29A0-6B97-419C-ADE3-3EC7D33EBB79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,21 +20,21 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E3B1DC7D-EE61-438F-8D3F-C6F9CE98AF32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E3B1DC7D-EE61-438F-8D3F-C6F9CE98AF32}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E3B1DC7D-EE61-438F-8D3F-C6F9CE98AF32}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E3B1DC7D-EE61-438F-8D3F-C6F9CE98AF32}.Release|Any CPU.Build.0 = Release|Any CPU
-		{18519D47-09C4-4C5D-AA77-EF8173741AA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18519D47-09C4-4C5D-AA77-EF8173741AA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18519D47-09C4-4C5D-AA77-EF8173741AA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18519D47-09C4-4C5D-AA77-EF8173741AA1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FEBCF870-6F7C-4B4F-BE20-B10F325F5EB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FEBCF870-6F7C-4B4F-BE20-B10F325F5EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FEBCF870-6F7C-4B4F-BE20-B10F325F5EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FEBCF870-6F7C-4B4F-BE20-B10F325F5EB3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3F0EB8F1-CC77-4DA3-80B4-ECCE6B403156}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3F0EB8F1-CC77-4DA3-80B4-ECCE6B403156}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3F0EB8F1-CC77-4DA3-80B4-ECCE6B403156}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3F0EB8F1-CC77-4DA3-80B4-ECCE6B403156}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8059FAD1-9E8F-4A3B-8900-DBE4BF4ECC9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8059FAD1-9E8F-4A3B-8900-DBE4BF4ECC9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8059FAD1-9E8F-4A3B-8900-DBE4BF4ECC9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8059FAD1-9E8F-4A3B-8900-DBE4BF4ECC9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{212A71B4-5D93-4D07-A551-4E0F5A6C80D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{212A71B4-5D93-4D07-A551-4E0F5A6C80D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{212A71B4-5D93-4D07-A551-4E0F5A6C80D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{212A71B4-5D93-4D07-A551-4E0F5A6C80D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9911BC5F-328F-498F-8764-3E91419482D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9911BC5F-328F-498F-8764-3E91419482D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9911BC5F-328F-498F-8764-3E91419482D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9911BC5F-328F-498F-8764-3E91419482D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D82F29A0-6B97-419C-ADE3-3EC7D33EBB79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D82F29A0-6B97-419C-ADE3-3EC7D33EBB79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D82F29A0-6B97-419C-ADE3-3EC7D33EBB79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D82F29A0-6B97-419C-ADE3-3EC7D33EBB79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
