@@ -212,7 +212,7 @@ namespace TootingMad.DataSources.LaCrosse
             if (count > 15)
                 throw new ArgumentException("count cannot be greater than 15");
 
-            int RetriesLeft = 5;
+            int RetriesLeft = 10;
             bool Successful = false;
             bool IsReset = true;
             byte[] Answer = new byte[count];
