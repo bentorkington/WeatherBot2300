@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterTest", "TwitterTest\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterBot", "TwitterBot\TwitterBot.csproj", "{D82F29A0-6B97-419C-ADE3-3EC7D33EBB79}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestChart", "TestChart\TestChart.csproj", "{AB2D03A2-1BBF-4846-9C70-FA073EF0ABA4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{D82F29A0-6B97-419C-ADE3-3EC7D33EBB79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D82F29A0-6B97-419C-ADE3-3EC7D33EBB79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D82F29A0-6B97-419C-ADE3-3EC7D33EBB79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB2D03A2-1BBF-4846-9C70-FA073EF0ABA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB2D03A2-1BBF-4846-9C70-FA073EF0ABA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB2D03A2-1BBF-4846-9C70-FA073EF0ABA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB2D03A2-1BBF-4846-9C70-FA073EF0ABA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
