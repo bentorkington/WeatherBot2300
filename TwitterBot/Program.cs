@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -64,8 +64,8 @@ namespace TwitterBot
                     {
                         var resultString = $"It's currently {((decimal)res[2].Item2).ToString("F1")}°C with {((decimal)res[3].Item2).ToString("F0")}% humidity.\nThe wind is {((decimal)res[1].Item2).ToString("F1")} kts from {res[0].Item2}\nAir pressure is {((decimal)res[4].Item2).ToString("F1")} hPa and {res[5].Item2.ToString().ToLower()}";
 
-                        int width = 800;
-                        int height = 600;
+                        int width = 1280;
+                        int height = 720;
                         var plot = new Plot(width, height);
 
                         double[] dataX = timeHistory.Select(x => x.ToOADate()).ToArray();
