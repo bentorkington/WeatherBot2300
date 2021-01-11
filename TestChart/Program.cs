@@ -30,14 +30,13 @@ namespace TestChart
             double[] dataX = myDates.Select(x => x.ToOADate()).ToArray();
             //plot.PlotScatter(dataX, dataY);
 
-
             plot.XAxis.DateTimeFormat(true);
 
             plot.YAxis.Label("°C");
             plot.YAxis.Color(Color.Red);
 
             //double[] dataX = DataGen.Consecutive(60);
-            double[] dataY = DataGen.Sin(60, 2, 25, 5);
+            double[] dataY = DataGen.Sin(60, 2, 25, 2);
             //plot.PlotScatter(dataX, dataY);
 
             var scatter = plot.AddScatter(dataX, dataY);
@@ -45,7 +44,13 @@ namespace TestChart
             scatter.LineWidth = 2;
             scatter.Color = Color.Red;
 
+            var baroScatter = plot.AddScatter(dataX, DataGen.Sin(60, 6, 1013, 4));
 
+            var yAxis3 = plot.AddAxis(ScottPlot.Renderable.Edge.Left, axisIndex: 2);
+            baroScatter.YAxisIndex = 2;
+            yAxis3.Label("hPa");
+            yAxis3.Color(baroScatter.Color);
+            
             plot.SaveFig("out.png");
             var bitmap = plot.Render();
             var png = ImageToPngByte(bitmap);

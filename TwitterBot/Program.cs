@@ -1,37 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+using ScottPlot;
 using TootingMad.DataSources.LaCrosse;
 using Tweetinvi;
-
+using Tweetinvi.Parameters;
 
 namespace TwitterBot
 {
-    class TwitterCredentials
-    {
-        public string ConsumerKey;
-        public string ConsumerSecret;
-        public string AccessToken;
-        public string AccessSecret;
-    }
 
     class Program
     {
-        static TwitterCredentials GetCredentials()
-        {
-            return new TwitterCredentials()
-            {
-                ConsumerKey = Environment.GetEnvironmentVariable("WEATHERBOT_CONSUMER_KEY"),
-                ConsumerSecret = Environment.GetEnvironmentVariable("WEATHERBOT_CONSUMER_SECRET"),
-                AccessToken = Environment.GetEnvironmentVariable("WEATHERBOT_ACCESS_TOKEN"),
-                AccessSecret = Environment.GetEnvironmentVariable("WEATHERBOT_ACCESS_SECRET"),
-            };
-        }
-
         static async Task Main(string[] args)
         {
-            TwitterCredentials creds = GetCredentials();
+            var customCulture = new System.Globalization.CultureInfo("en-NZ");
+            customCulture.DateTimeFormat.ShortDatePattern = "yyyy-MM-dd";
+            System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
 
+            TwitterCredentials creds = TwitterCredentials.GetFromEnvironment();
 
             var userClient = new TwitterClient(creds.ConsumerKey, creds.ConsumerSecret, creds.AccessToken, creds.AccessSecret);
 
@@ -47,18 +37,74 @@ namespace TwitterBot
                 WS2300.AvailableSensors.Tendency,
             };
 
+            List<DateTime> timeHistory = new List<DateTime>();
+            List<double> temperatures = new List<double>();
+            List<double> barometers = new List<double>();
+            DateTime startTime = DateTime.Now;
+
             while(true)
             {
-                var timeUntilTopOfHour = TimeSpan.FromSeconds(3600 - DateTime.Now.TimeOfDay.TotalSeconds % 3600);
-                Console.WriteLine($"Sleeping for {timeUntilTopOfHour}");
-                System.Threading.Thread.Sleep(timeUntilTopOfHour);
+                var timeUntilTopOfMinute = TimeSpan.FromSeconds(60 - DateTime.Now.TimeOfDay.TotalSeconds % 60);
+                Console.WriteLine($"Sleeping for {timeUntilTopOfMinute}");
+                System.Threading.Thread.Sleep(timeUntilTopOfMinute);
 
                 var res = station.GetSensors(sensors);
 
-                var resultString = $"It's currently {((decimal)res[2].Item2).ToString("F1")}°C with {((decimal)res[3].Item2).ToString("F0")}% humidity.\nThe wind is {((decimal)res[1].Item2).ToString("F1")} kts from {res[0].Item2}\nAir pressure is {((decimal)res[4].Item2).ToString("F1")} hPa and {res[5].Item2.ToString().ToLower()}";
+                DateTime now = DateTime.Now;
 
-                var tweet = await userClient.Tweets.PublishTweetAsync(resultString);
-                Console.WriteLine("published the tweet: " + tweet);
+                timeHistory.Add(now);
+                temperatures.Add(Decimal.ToDouble((decimal)res[2].Item2));
+                barometers.Add(Decimal.ToDouble((decimal)res[4].Item2));
+
+                if (now.Hour != startTime.Hour)
+                {
+                    var resultString = $"It's currently {((decimal)res[2].Item2).ToString("F1")}°C with {((decimal)res[3].Item2).ToString("F0")}% humidity.\nThe wind is {((decimal)res[1].Item2).ToString("F1")} kts from {res[0].Item2}\nAir pressure is {((decimal)res[4].Item2).ToString("F1")} hPa and {res[5].Item2.ToString().ToLower()}";
+
+                    int width = 800;
+                    int height = 600;
+                    var plot = new Plot(width, height);
+
+                    double[] dataX = timeHistory.Select(x => x.ToOADate()).ToArray();
+                    plot.XAxis.DateTimeFormat(true);
+                    plot.YAxis.Label("°C");
+                    plot.YAxis.Color(Color.Red);
+
+                    var tempScatter = plot.AddScatter(dataX, temperatures.ToArray());
+                    tempScatter.LineWidth = 2;
+                    tempScatter.Color = Color.Red;
+
+                    var baroScatter = plot.AddScatter(dataX, barometers.ToArray());
+                    baroScatter.LineWidth = 2;
+                    baroScatter.Color = Color.DodgerBlue;
+
+                    var yAxis3 = plot.AddAxis(ScottPlot.Renderable.Edge.Left, axisIndex: 2);
+                    baroScatter.YAxisIndex = 2;
+                    yAxis3.Label("hPa");
+                    yAxis3.Color(baroScatter.Color);
+
+                    var image = ImageToPngByte(plot.Render());
+                    var uploadedImage = await userClient.Upload.UploadTweetImageAsync(image);
+                    var tweetParams = new PublishTweetParameters(resultString)
+                    {
+                        Medias = { uploadedImage }
+                    };
+                    var tweetWithImage = await userClient.Tweets.PublishTweetAsync(tweetParams);
+                    Console.WriteLine("published the tweet: " + tweetWithImage);
+
+                    startTime = now;
+                    timeHistory = new List<DateTime>();
+                    temperatures = new List<double>();
+                    barometers = new List<double>();
+                }
+            }
+        }
+
+        public static byte[] ImageToPngByte(Image img)
+        {
+            using (var stream = new MemoryStream())
+            {
+                img.Save(stream, ImageFormat.Png);
+                return stream.ToArray();
             }
         }
     }
