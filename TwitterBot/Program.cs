@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -73,18 +73,20 @@ namespace TwitterBot
                         plot.YAxis.Label("°C");
                         plot.YAxis.Color(Color.Red);
 
+                        plot.SetAxisLimitsY(0, 45);
+
                         var tempScatter = plot.AddScatter(dataX, temperatures.ToArray());
                         tempScatter.LineWidth = 2;
                         tempScatter.Color = Color.Red;
 
-                        var baroScatter = plot.AddScatter(dataX, barometers.ToArray());
-                        baroScatter.LineWidth = 2;
-                        baroScatter.Color = Color.DodgerBlue;
+                        //var baroScatter = plot.AddScatter(dataX, barometers.ToArray());
+                        //baroScatter.LineWidth = 2;
+                        //baroScatter.Color = Color.DodgerBlue;
 
-                        var yAxis3 = plot.AddAxis(ScottPlot.Renderable.Edge.Left, axisIndex: 2);
-                        baroScatter.YAxisIndex = 2;
-                        yAxis3.Label("hPa");
-                        yAxis3.Color(baroScatter.Color);
+                        //var yAxis3 = plot.AddAxis(ScottPlot.Renderable.Edge.Left, axisIndex: 2);
+                        //baroScatter.YAxisIndex = 2;
+                        //yAxis3.Label("hPa");
+                        //yAxis3.Color(baroScatter.Color);
 
                         var image = ImageToPngByte(plot.Render());
                         var uploadedImage = await userClient.Upload.UploadTweetImageAsync(image);

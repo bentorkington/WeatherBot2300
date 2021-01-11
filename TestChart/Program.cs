@@ -35,6 +35,9 @@ namespace TestChart
             plot.YAxis.Label("°C");
             plot.YAxis.Color(Color.Red);
 
+            plot.SetAxisLimitsY(0, 50);
+            
+
             //double[] dataX = DataGen.Consecutive(60);
             double[] dataY = DataGen.Sin(60, 2, 25, 2);
             //plot.PlotScatter(dataX, dataY);
@@ -46,10 +49,15 @@ namespace TestChart
 
             var baroScatter = plot.AddScatter(dataX, DataGen.Sin(60, 6, 1013, 4));
 
+            var baroLimits = baroScatter.GetAxisLimits();
+            
+
             var yAxis3 = plot.AddAxis(ScottPlot.Renderable.Edge.Left, axisIndex: 2);
             baroScatter.YAxisIndex = 2;
             yAxis3.Label("hPa");
             yAxis3.Color(baroScatter.Color);
+
+            
             
             plot.SaveFig("out.png");
             var bitmap = plot.Render();
