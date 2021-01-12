@@ -19,6 +19,8 @@ namespace TestDriver
                 WS2300.AvailableSensors.OutdoorHumidity,
                 WS2300.AvailableSensors.RelativePressure,
                 WS2300.AvailableSensors.Tendency,
+                WS2300.AvailableSensors.RainfallPerImpulse,
+                WS2300.AvailableSensors.RainCount,
             };
 
             var results = station.GetSensors(sensors);
