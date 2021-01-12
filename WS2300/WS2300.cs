@@ -88,6 +88,8 @@ namespace TootingMad.DataSources.LaCrosse
             // rainfall
             public static Sensor RainfallPerImpulse = new Sensor("Rainfall per Impulse", "internal.rainfallPerImpulse", RawDataType.U32, new LinearConverter(0, 0.001m, Units.Millivolts), 0x437, DataReaderBcd3);
             public static Sensor RainCount = new Sensor("Rain Count", "environment.rainCount", RawDataType.U32, new LinearConverter(0, 1, Units.Millivolts), 0x43a, DataReaderBcd3);
+            public static Sensor RainCount2 = new Sensor("Rain Count", "environment.rainCount", RawDataType.U32, new LinearConverter(0, 1, Units.Millivolts), 0x43d, DataReaderBcd3);
+            public static Sensor LastTotalRainCount = new Sensor("Rain Count", "environment.rainCount", RawDataType.U32, new LinearConverter(0, 1, Units.Millivolts), 0x440, DataReaderBcd3);
             public static Sensor RainTotal = new Sensor("Rain Total", "environment.rainTotal", RawDataType.U32, new LinearConverter(0, 0.01m, Units.Millivolts), 0x4d2, ReadBcd5);
 
             // other
@@ -138,7 +140,7 @@ namespace TootingMad.DataSources.LaCrosse
 
         public List<Tuple<Sensor, object>> GetSensors(List<Sensor> sensors)
         {
-            _serialPort.Open();
+            _serialPort.Open(); // thows UnauthorizedAccessException (inner IOException("Device or resource busy") if already open somewhere else
 
             var results = new List<Tuple<Sensor, object>>();
 
