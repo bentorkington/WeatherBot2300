@@ -88,6 +88,7 @@ namespace TootingMad.DataSources.LaCrosse
             // rainfall
             public static Sensor RainfallPerImpulse = new Sensor("Rainfall per Impulse", "internal.rainfallPerImpulse", RawDataType.U32, new LinearConverter(0, 0.001m, Units.Millivolts), 0x437, DataReaderBcd3);
             public static Sensor RainCount = new Sensor("Rain Count", "environment.rainCount", RawDataType.U32, new LinearConverter(0, 1, Units.Millivolts), 0x43a, DataReaderBcd3);
+            public static Sensor RainTotal = new Sensor("Rain Total", "environment.rainTotal", RawDataType.U32, new LinearConverter(0, 0.01m, Units.Millivolts), 0x4d2, ReadBcd5);
 
             // other
             public static Sensor WindDirectionDegrees = new Sensor("Wind Direction", "environment.outdoor.wind.direction", RawDataType.U32, new LinearConverter(0m, 22.5m, Units.Degrees), 0x52c, DataReaderByte);

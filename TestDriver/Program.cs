@@ -21,6 +21,8 @@ namespace TestDriver
                 WS2300.AvailableSensors.Tendency,
                 WS2300.AvailableSensors.RainfallPerImpulse,
                 WS2300.AvailableSensors.RainCount,
+                WS2300.AvailableSensors.RainTotal,
+
             };
 
             var results = station.GetSensors(sensors);
