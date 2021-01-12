@@ -36,7 +36,7 @@ namespace TestChart
             plot.YAxis.Color(Color.Red);
 
             plot.SetAxisLimitsY(0, 50);
-            
+
 
             //double[] dataX = DataGen.Consecutive(60);
             double[] dataY = DataGen.Sin(60, 2, 25, 2);
@@ -57,7 +57,6 @@ namespace TestChart
             yAxis3.Label("hPa");
             yAxis3.Color(baroScatter.Color);
 
-            
             
             plot.SaveFig("out.png");
             var bitmap = plot.Render();

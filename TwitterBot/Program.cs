@@ -59,25 +59,26 @@ namespace TwitterBot
                     temperatures.Add(Decimal.ToDouble((decimal)res[2].Item2));
                     barometers.Add(Decimal.ToDouble((decimal)res[4].Item2));
 
+                    
 
                     if (now.Hour != startTime.Hour)
                     {
                         var resultString = $"It's currently {((decimal)res[2].Item2).ToString("F1")}°C with {((decimal)res[3].Item2).ToString("F0")}% humidity.\nThe wind is {((decimal)res[1].Item2).ToString("F1")} kts from {res[0].Item2}\nAir pressure is {((decimal)res[4].Item2).ToString("F1")} hPa and {res[5].Item2.ToString().ToLower()}";
 
-                        int width = 1280;
-                        int height = 720;
-                        var plot = new Plot(width, height);
+                        //int width = 1280;
+                        //int height = 720;
+                        //var plot = new Plot(width, height);
 
-                        double[] dataX = timeHistory.Select(x => x.ToOADate()).ToArray();
-                        plot.XAxis.DateTimeFormat(true);
-                        plot.YAxis.Label("°C");
-                        plot.YAxis.Color(Color.Red);
+                        //double[] dataX = timeHistory.Select(x => x.ToOADate()).ToArray();
+                        //plot.XAxis.DateTimeFormat(true);
+                        //plot.YAxis.Label("°C");
+                        //plot.YAxis.Color(Color.Red);
 
-                        plot.SetAxisLimitsY(0, 45);
+                        //plot.SetAxisLimitsY(0, 45);
 
-                        var tempScatter = plot.AddScatter(dataX, temperatures.ToArray());
-                        tempScatter.LineWidth = 2;
-                        tempScatter.Color = Color.Red;
+                        //var tempScatter = plot.AddScatter(dataX, temperatures.ToArray());
+                        //tempScatter.LineWidth = 2;
+                        //tempScatter.Color = Color.Red;
 
                         //var baroScatter = plot.AddScatter(dataX, barometers.ToArray());
                         //baroScatter.LineWidth = 2;
@@ -88,14 +89,16 @@ namespace TwitterBot
                         //yAxis3.Label("hPa");
                         //yAxis3.Color(baroScatter.Color);
 
-                        var image = ImageToPngByte(plot.Render());
-                        var uploadedImage = await userClient.Upload.UploadTweetImageAsync(image);
-                        var tweetParams = new PublishTweetParameters(resultString)
-                        {
-                            Medias = { uploadedImage }
-                        };
-                        var tweetWithImage = await userClient.Tweets.PublishTweetAsync(tweetParams);
-                        Console.WriteLine("published the tweet: " + tweetWithImage);
+                        //var image = ImageToPngByte(plot.Render());
+                        //var uploadedImage = await userClient.Upload.UploadTweetImageAsync(image);
+                        //var tweetParams = new PublishTweetParameters(resultString)
+                        //{
+                        //    Medias = { uploadedImage }
+                        //};
+                        //var tweet = await userClient.Tweets.PublishTweetAsync(tweetParams);
+
+                        var tweet = await userClient.Tweets.PublishTweetAsync(resultString);
+                        Console.WriteLine("published the tweet: " + tweet);
 
                         startTime = now;
                         timeHistory = new List<DateTime>();
