@@ -35,6 +35,7 @@ namespace TwitterBot
                 WS2300.AvailableSensors.OutdoorHumidity,
                 WS2300.AvailableSensors.RelativePressure,
                 WS2300.AvailableSensors.Tendency,
+                WS2300.AvailableSensors.RainTotal,
             };
 
             List<DateTime> timeHistory = new List<DateTime>();
@@ -51,6 +52,8 @@ namespace TwitterBot
 
                 DateTime now = DateTime.Now;
 
+                Decimal lastRain = -1m;
+
                 try
                 {
                     var res = station.GetSensors(sensors);
@@ -63,8 +66,15 @@ namespace TwitterBot
 
                     if (now.Hour != startTime.Hour)
                     {
-                        var resultString = $"It's currently {((decimal)res[2].Item2).ToString("F1")}°C with {((decimal)res[3].Item2).ToString("F0")}% humidity.\nThe wind is {((decimal)res[1].Item2).ToString("F1")} kts from {res[0].Item2}\nAir pressure is {((decimal)res[4].Item2).ToString("F1")} hPa and {res[5].Item2.ToString().ToLower()}";
+                        decimal elapsedRain = 0m;
+                        if (lastRain >= 0m)
+                        {
+                            elapsedRain = (decimal)res[6].Item2 - lastRain;
+                        }
 
+                        var resultString = $"It's currently {((decimal)res[2].Item2).ToString("F1")}°C with {((decimal)res[3].Item2).ToString("F0")}% humidity.\nThe wind is {((decimal)res[1].Item2).ToString("F1")} kts from {res[0].Item2}\nAir pressure is {((decimal)res[4].Item2).ToString("F1")} hPa and {res[5].Item2.ToString().ToLower()}, {elapsedRain}mm rain";
+
+                        lastRain = (decimal)res[6].Item2;
                         //int width = 1280;
                         //int height = 720;
                         //var plot = new Plot(width, height);
