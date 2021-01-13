@@ -142,18 +142,23 @@ namespace TootingMad.DataSources.LaCrosse
         {
             _serialPort.Open(); // thows UnauthorizedAccessException (inner IOException("Device or resource busy") if already open somewhere else
 
-            var results = new List<Tuple<Sensor, object>>();
-
-            foreach (var sensor in sensors)
+            try
             {
-                var value = sensor.GetValue(_serialPort);
-                var cookedValue = sensor.Converter.Decode(value);
+                var results = new List<Tuple<Sensor, object>>();
 
-                results.Add(new Tuple<Sensor, object>(sensor, cookedValue));
+                foreach (var sensor in sensors)
+                {
+                    var value = sensor.GetValue(_serialPort);
+                    var cookedValue = sensor.Converter.Decode(value);
+
+                    results.Add(new Tuple<Sensor, object>(sensor, cookedValue));
+                }
+                return results;
             }
-
-            _serialPort.Close();
-            return results;
+            finally
+            {
+                _serialPort.Close();
+            }
         }
 
 
