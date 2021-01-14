@@ -46,13 +46,11 @@ namespace TwitterBot
             while(true)
             {
                 var timeUntilTopOfMinute = TimeSpan.FromSeconds(60 - DateTime.Now.TimeOfDay.TotalSeconds % 60);
-                Console.WriteLine($"Sleeping for {timeUntilTopOfMinute}");
                 System.Threading.Thread.Sleep(timeUntilTopOfMinute);
-
 
                 DateTime now = DateTime.Now;
 
-                Decimal lastRain = -1m;
+                decimal lastRain = -1m;
 
                 try
                 {
