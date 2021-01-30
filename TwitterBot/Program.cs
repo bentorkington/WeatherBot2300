@@ -25,7 +25,7 @@ namespace TwitterBot
 
             var userClient = new TwitterClient(creds.ConsumerKey, creds.ConsumerSecret, creds.AccessToken, creds.AccessSecret);
 
-            var station = new TootingMad.DataSources.LaCrosse.WS2300(Environment.GetEnvironmentVariable("WEATHERBOT_SERIAL_PORT"));
+            var station = new WS2300(Environment.GetEnvironmentVariable("WEATHERBOT_SERIAL_PORT"));
 
             var sensors = new List<Sensor>
             {
@@ -105,13 +105,13 @@ namespace TwitterBot
                         //};
                         //var tweet = await userClient.Tweets.PublishTweetAsync(tweetParams);
 
-                        var tweet = await userClient.Tweets.PublishTweetAsync(resultString);
-                        Console.WriteLine("published the tweet: " + tweet);
-
                         startTime = now;
                         timeHistory = new List<DateTime>();
                         temperatures = new List<double>();
                         barometers = new List<double>();
+
+                        var tweet = await userClient.Tweets.PublishTweetAsync(resultString);
+                        Console.WriteLine("published the tweet: " + tweet);
                     }
                 }
                 catch (Exception ex)
