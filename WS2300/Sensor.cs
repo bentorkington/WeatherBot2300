@@ -5,18 +5,16 @@ namespace TootingMad.DataSources.LaCrosse
     public class Sensor
     {
         public string Description { get; set; }
-        public string Identifier { get; }
-        public DataReader Reader;
+        public DataReader DataReader;
         public int Register { get; }
         public IRawValueConverter Converter { get; }
         RawDataType _rawType;
 
-        public Sensor(string description, string identifier, RawDataType rawType, IRawValueConverter converter, int address, DataReader reader)
+        public Sensor(string description, RawDataType rawType, IRawValueConverter converter, int address, DataReader reader)
         {
-            Identifier = identifier;
             Description = description;
             Register = address;
-            Reader = reader;
+            DataReader = reader;
             Converter = converter;
             _rawType = rawType;
         }
@@ -36,8 +34,6 @@ namespace TootingMad.DataSources.LaCrosse
             }
         }
 
-        public string Id { get; }
-
         public override string ToString()
         {
             return Description;
@@ -45,7 +41,7 @@ namespace TootingMad.DataSources.LaCrosse
 
         public int GetValue(SerialPort comPort)
         {
-            return Reader(Register, comPort);
+            return DataReader(Register, comPort);
         }
     }
 }

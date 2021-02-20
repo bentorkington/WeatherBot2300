@@ -61,7 +61,6 @@ namespace TwitterBot
                     barometers.Add(Decimal.ToDouble((decimal)res[4].Item2));
 
                     
-
                     if (now.Hour != startTime.Hour)
                     {
                         decimal elapsedRain = 0m;
