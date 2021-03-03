@@ -72,75 +72,70 @@ namespace TootingMad.DataSources.LaCrosse
         public class AvailableSensors
         {
             // temperatures
-            public static Sensor OutdoorTemperature = new Sensor("Outdoor Temperature", "environment.outdoor.temperature", RawDataType.U32, QuadTemperatureConverter, 0x373, DataReaderBcd4);
-            public static Sensor OutdoorHumidity = new Sensor("Outdoor Humidity", "environment.outdoor.humidity", RawDataType.U32, HumidityConverter, 0x419, DataReaderBcd2);
+            public static Sensor OutdoorTemperature = new Sensor("Outdoor Temperature", RawDataType.U32, QuadTemperatureConverter, 0x373, DataReaderBcd4);
+            public static Sensor OutdoorHumidity = new Sensor("Outdoor Humidity", RawDataType.U32, HumidityConverter, 0x419, DataReaderBcd2);
 
-            public static Sensor IndoorTemperature = new Sensor("Indoor Temperature", "environment.indoor.temperature", RawDataType.U32, QuadTemperatureConverter, 0x346, DataReaderBcd4);
-            public static Sensor IndoorHumidity = new Sensor("Indoor Humidity", "environment.indoor.humidity", RawDataType.U32, HumidityConverter, 0x3fb, DataReaderBcd2);
+            public static Sensor IndoorTemperature = new Sensor("Indoor Temperature", RawDataType.U32, QuadTemperatureConverter, 0x346, DataReaderBcd4);
+            public static Sensor IndoorHumidity = new Sensor("Indoor Humidity", RawDataType.U32, HumidityConverter, 0x3fb, DataReaderBcd2);
 
-            public static Sensor DewPoint = new Sensor("Dew Point", "environment.dewPoint", RawDataType.U32, QuadTemperatureConverter, 0x3ce, DataReaderBcd4);
-            public static Sensor WindChill = new Sensor("Wind Chill", "environment.outdoor.windChill", RawDataType.U32, QuadTemperatureConverter, 0x3a0, DataReaderBcd4);
+            public static Sensor DewPoint = new Sensor("Dew Point", RawDataType.U32, QuadTemperatureConverter, 0x3ce, DataReaderBcd4);
+            public static Sensor WindChill = new Sensor("Wind Chill", RawDataType.U32, QuadTemperatureConverter, 0x3a0, DataReaderBcd4);
 
             // pressures
-            public static Sensor RelativePressure = new Sensor("Relative Pressure", "environment.relativePressure", RawDataType.U32, PressureConverter, 0x5e2, DataReaderBcd5);
-            public static Sensor AbsolutePressure = new Sensor("Absolute Pressure", "environment.absolutePressure", RawDataType.U32, PressureConverter, 0x5d8, DataReaderBcd5);
+            public static Sensor RelativePressure = new Sensor("Relative Pressure", RawDataType.U32, PressureConverter, 0x5e2, DataReaderBcd5);
+            public static Sensor AbsolutePressure = new Sensor("Absolute Pressure", RawDataType.U32, PressureConverter, 0x5d8, DataReaderBcd5);
 
             // rainfall
-            public static Sensor RainfallPerImpulse = new Sensor("Rainfall per Impulse", "internal.rainfallPerImpulse", RawDataType.U32, new LinearConverter(0, 0.001m, Units.Millivolts), 0x437, DataReaderBcd3);
-            public static Sensor RainCount = new Sensor("Rain Count", "environment.rainCount", RawDataType.U32, new LinearConverter(0, 1, Units.Millivolts), 0x43a, DataReaderBcd3);
-            public static Sensor RainCount2 = new Sensor("Rain Count", "environment.rainCount", RawDataType.U32, new LinearConverter(0, 1, Units.Millivolts), 0x43d, DataReaderBcd3);
-            public static Sensor LastTotalRainCount = new Sensor("Rain Count", "environment.rainCount", RawDataType.U32, new LinearConverter(0, 1, Units.Millivolts), 0x440, DataReaderBcd3);
-            public static Sensor RainTotal = new Sensor("Rain Total", "environment.rainTotal", RawDataType.U32, new LinearConverter(0, 0.01m, Units.Millivolts), 0x4d2, ReadBcd5);
+            public static Sensor RainfallPerImpulse = new Sensor("Rainfall per Impulse", RawDataType.U32, new LinearConverter(0, 0.001m, Units.Millivolts), 0x437, DataReaderBcd3);
+            public static Sensor RainCount = new Sensor("Rain Count", RawDataType.U32, new LinearConverter(0, 1, Units.Millivolts), 0x43a, DataReaderBcd3);
+            public static Sensor RainCount2 = new Sensor("Rain Count", RawDataType.U32, new LinearConverter(0, 1, Units.Millivolts), 0x43d, DataReaderBcd3);
+            public static Sensor LastTotalRainCount = new Sensor("Rain Count", RawDataType.U32, new LinearConverter(0, 1, Units.Millivolts), 0x440, DataReaderBcd3);
+            public static Sensor RainTotal = new Sensor("Rain Total", RawDataType.U32, new LinearConverter(0, 0.01m, Units.Millivolts), 0x4d2, ReadBcd5);
 
             // other
-            public static Sensor WindDirectionDegrees = new Sensor("Wind Direction", "environment.outdoor.wind.direction", RawDataType.U32, new LinearConverter(0m, 22.5m, Units.Degrees), 0x52c, DataReaderByte);
-            public static Sensor WindDirectionCardinal = new Sensor("Wind Direction", "environment.outdoor.wind.direction", RawDataType.U32, new CardinalDirectionConverter(), 0x52c, DataReaderByte);
-            public static Sensor WindSpeedMetresPerSecond = new Sensor("Wind Speed", "environment.outdoor.wind.speed", RawDataType.U32, new LinearConverter(0, 0.1m, Units.MetresPerSecond), 0x529, DataReaderBcd3);
-            public static Sensor WindSpeedKnots = new Sensor("Wind Speed", "environment.outdoor.wind.speed", RawDataType.U32, new LinearConverter(0, 0.194384m, Units.Knots), 0x529, DataReaderBcd3);
+            public static Sensor WindDirectionDegrees = new Sensor("Wind Direction", RawDataType.U32, new LinearConverter(0m, 22.5m, Units.Degrees), 0x52c, DataReaderByte);
+            public static Sensor WindDirectionCardinal = new Sensor("Wind Direction", RawDataType.U32, new CardinalDirectionConverter(), 0x52c, DataReaderByte);
+            public static Sensor WindSpeedMetresPerSecond = new Sensor("Wind Speed", RawDataType.U32, new LinearConverter(0, 0.1m, Units.MetresPerSecond), 0x529, DataReaderBcd3);
+            public static Sensor WindSpeedKnots = new Sensor("Wind Speed", RawDataType.U32, new LinearConverter(0, 0.194384m, Units.Knots), 0x529, DataReaderBcd3);
 
-            public static Sensor Tendency = new Sensor("Tendency", "environment.pressureTendency", RawDataType.U8, new TendencyConverter(), 0x26c, DataReaderByte);
+            public static Sensor Tendency = new Sensor("Tendency", RawDataType.U8, new TendencyConverter(), 0x26c, DataReaderByte);
 
-            public static List<Sensor> AllSensors
+
+            public static Dictionary<String, Sensor> AllSensors
             {
                 get
                 {
-                    return new List<Sensor>
+                    return new Dictionary<String, Sensor>
                     {
-                        OutdoorTemperature,
-                        OutdoorHumidity,
-                        RelativePressure,
+                        { "outdoor.temperature", OutdoorTemperature },
+                        { "outdoor.humidity", OutdoorHumidity },
+                        { "outdoor.dewPoint", DewPoint },
+
+                        { "outdoor.windChill", WindChill },
+                        { "outdoor.rainCount", RainCount },
+                        { "outdoor.rainTotal", RainTotal },
+                        { "outdoor.windDirection.degrees", WindDirectionDegrees },
+                        { "outdoor.windDirection.cardinal", WindDirectionCardinal },
+                        { "outdoor.windSpeed.knots", WindSpeedKnots },
+                        { "outdoor.windSpeed.metresPerSecond", WindSpeedMetresPerSecond },
+
+
+                        { "indoor.temperature", IndoorTemperature },
+                        { "indoor.humidity", IndoorHumidity },
+
+                        { "environment.pressure.relative", RelativePressure },
+                        { "environment.pressure.absolute", AbsolutePressure },
+                        { "environment.pressure.tendency", Tendency },
                     };
                 }
             }
         }
 
-        public List<Sensor> Sensors = new List<Sensor>()
-        {
-            new Sensor("Indoor Temperature", "environment.indoor.temperature", RawDataType.U32, QuadTemperatureConverter, 0x346, DataReaderBcd4),
-            //new EnumSensor(SensorFormat.Enum, 0x26b, "environmental.forecast", typeof(Forecast)),
-            //new EnumSensor(SensorFormat.Enum, 0x26c, "environmental.tendency", typeof(Tendency)),
-            //new Sensor(SensorFormat.QuadTemperature, 0x346, "environmental.temperature.indoor"),
 
-            new Sensor("Outdoor Temperature", "environment.outdoor.temperature", RawDataType.U32, QuadTemperatureConverter, 0x373, DataReaderBcd4),
-            new Sensor("Dew Point", "environment.dewPoint", RawDataType.U32, QuadTemperatureConverter, 0x3ce, DataReaderBcd4),
-            new Sensor("Absolute Pressure", "environment.absolutePressure", RawDataType.U32, PressureConverter, 0x5d8, DataReaderBcd5),
-            new Sensor("Relative Pressure", "environment.relativePressure", RawDataType.U32, PressureConverter, 0x5e2, DataReaderBcd5),
-            new Sensor("Indoor Humidity", "environment.indoor.humidity", RawDataType.U32, HumidityConverter, 0x3fb, DataReaderBcd2),
-            new Sensor("Outdoor Humidity", "environment.outdoor.humidity", RawDataType.U32, HumidityConverter, 0x3fb, DataReaderBcd2),
-            new Sensor("Wind Chill", "environment.outdoor.windChill", RawDataType.U32, QuadTemperatureConverter, 0x3a0, DataReaderBcd4),
-            new Sensor("Wind Direction", "environment.outdoor.wind.direction", RawDataType.U32, new LinearConverter(0m, 22.5m, Units.Degrees), 0x52c, DataReaderByte),
-            new Sensor("Wind Speed", "environment.outdoor.wind.speed", RawDataType.U32, new LinearConverter(0, 0.1m, Units.MetresPerSecond), 0x529, DataReaderBcd3),
-            
-
-            //new Sensor(SensorFormat.TriSpeed, 0x529, "en.wind.speed"),  // M/S
-            //new Sensor(SensorFormat.Angle, 0x52c, "en.wind.direction"), //  * 22.5 degrees
-            //new Sensor(SensorFormat.Pressure, 0x5d8, "en.pressure.absolute"),
-            //new Sensor(SensorFormat.Pressure, 0x5e2, "en.pressure.relative"),
-        };
 
         public List<Tuple<Sensor, object>> GetSensors(List<Sensor> sensors)
         {
-            _serialPort.Open(); // thows UnauthorizedAccessException (inner IOException("Device or resource busy") if already open somewhere else
+            _serialPort.Open(); // throws UnauthorizedAccessException (inner IOException("Device or resource busy") if already open somewhere else
 
             try
             {
@@ -159,12 +154,6 @@ namespace TootingMad.DataSources.LaCrosse
             {
                 _serialPort.Close();
             }
-        }
-
-
-        decimal ReadQuad(int baseAddress)
-        {
-            throw new NotImplementedException();
         }
 
         public static int ReadBcd4(int address, SerialPort comPort)
