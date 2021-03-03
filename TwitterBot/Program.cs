@@ -43,6 +43,8 @@ namespace TwitterBot
             List<double> barometers = new List<double>();
             DateTime startTime = DateTime.Now;
 
+            decimal lastRain = -1m;
+
             while(true)
             {
                 var timeUntilTopOfMinute = TimeSpan.FromSeconds(60 - DateTime.Now.TimeOfDay.TotalSeconds % 60);
@@ -50,7 +52,6 @@ namespace TwitterBot
 
                 DateTime now = DateTime.Now;
 
-                decimal lastRain = -1m;
 
                 try
                 {
