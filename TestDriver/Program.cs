@@ -35,7 +35,7 @@ namespace TestDriver
 
             for(int i=0; i<15; i++) {
                 var s = new List<Sensor> {
-                    new Sensor("4m", RawDataType.U32, new LinearConverter(0, 1m, Units.MetresPerSecond), 0x479 + i * 2, DataReaderBcd2);
+                    new Sensor("4m", RawDataType.U32, new LinearConverter(0, 1m, Units.MetresPerSecond), 0x479 + i * 2, DataReaderBcd2),
                 };
                 results = station.GetSensors(s);
                 Console.WriteLine(result);
